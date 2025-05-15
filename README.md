@@ -12,7 +12,7 @@ A fun and user-friendly React Native mobile app that offers 1000+ flirty, romant
 - React Native (Expo)
 - React Navigation
 - AsyncStorage (for saved messages)
-- Optional: Firebase or local DB for dynamic content
+- Firebase and local DB for dynamic content
 
 ## 📦 Installation
 
