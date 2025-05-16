@@ -15,7 +15,7 @@ export const messages: Record<string, string[]> = {
  Sweet: [
   "You're like a dictionary, you add meaning to my life.",
   "If kisses were snowflakes, I’d send you a blizzard.",
-  "You light up my world like nobody else.",
+  "You light up my world like nobody else .",
   "Your smile is my favorite view.",
   "Talking to you is the best part of my day.",
   "I could get lost in your eyes for days.",
