@@ -269,6 +269,7 @@ Romantic: [
     "You are the love of my life, yesterday, today, and always.",
     "I love you more than words can ever express."
   ],
+
   Passionate: [
     "Every touch of yours sets my soul on fire.",
     "I crave you in ways that words can't capture.",
@@ -321,6 +322,7 @@ Romantic: [
     "The passion between us is a language all its own.",
     "I burn for you with a fire that will never be extinguished."
   ],
+
   Supportive: [
     "I believe in you more than words can say.",
     "Whatever you're going through, I'm here for you.",
@@ -373,6 +375,7 @@ Romantic: [
     "I'm here to remind you of how amazing you are.",
     "Keep believing in yourself, because I believe in you."
   ],
+
   Longing: [
     "Every moment without you feels like a piece of me is missing.",
     "I find myself counting down the seconds until I see you again.",
@@ -425,6 +428,7 @@ Romantic: [
     "My heart whispers your name in every quiet moment.",
     "I long for the day when our hearts are no longer separated by distance."
   ],
+
   Grateful: [
     "I'm so grateful to have you in my life.",
     "Thank you for being you.",
@@ -476,6 +480,7 @@ Romantic: [
     "You've brought so much light into my life, and I'm eternally grateful.",
     "Thank you for being you, authentically and wonderfully."
   ],
+
   Playful: [
     "Let's cause some adorable trouble together.",
     "Are you ready for some fun and maybe a little mischief?",
@@ -527,6 +532,4 @@ Romantic: [
     "Let's make today a little less 'blah' and a lot more 'ha-ha'.",
     "I've got a playful proposition for you",
   ]
-
-
 };
