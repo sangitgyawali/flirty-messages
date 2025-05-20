@@ -1,60 +1,61 @@
 import React, { useState } from 'react';
 import {
+  SafeAreaView,
+  StatusBar,
   View,
-  StyleSheet,
   Text,
+  StyleSheet,
   Switch,
   TouchableOpacity,
   Linking,
-  SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useTheme } from '../context/ThemeContext';
 
 export default function SettingsScreen() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [language, setLanguage] = useState('en');
   const router = useRouter();
+  const { isDark, toggleTheme } = useTheme();
+  const [language, setLanguage] = useState('en');
 
-  const handleLangChange = (lang: string) => {
+  const handleLanguageChange = (lang: string) => {
     setLanguage(lang);
-    // Set locale here if using i18n
+    // Optional: Update i18n.locale here
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#fff0f5" barStyle="dark-content" />
+    <SafeAreaView style={[styles.container, { backgroundColor: isDark ? '#111' : '#fff0f5' }]}>
+      <StatusBar backgroundColor={isDark ? '#111' : '#fff0f5'} barStyle={isDark ? 'light-content' : 'dark-content'} />
 
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={24} color="#FF6F91" />
         </TouchableOpacity>
-        <Text style={styles.title}>Settings</Text>
-        <View style={{ width: 24 }} /> {/* Spacer */}
+        <Text style={[styles.title, { color: isDark ? '#fff' : '#FF6F91' }]}>Settings</Text>
+        <View style={{ width: 24 }} />
       </View>
 
-      {/* Dark Mode Toggle */}
+      {/* Dark Mode */}
       <View style={styles.row}>
         <Ionicons name="moon" size={22} color="#FF6F91" />
-        <Text style={styles.label}>Dark Mode</Text>
-        <Switch value={isDarkMode} onValueChange={setIsDarkMode} />
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Dark Mode</Text>
+        <Switch value={isDark} onValueChange={toggleTheme} />
       </View>
 
-      {/* Language Switch */}
+      {/* Language Selection */}
       <View style={styles.row}>
         <Ionicons name="language" size={22} color="#FF6F91" />
-        <Text style={styles.label}>Language</Text>
-        <View style={styles.langSwitch}>
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Language</Text>
+        <View style={styles.langContainer}>
           {['en', 'es', 'hi'].map((lang) => (
             <TouchableOpacity
               key={lang}
-              onPress={() => handleLangChange(lang)}
               style={[
-                styles.langBtn,
+                styles.langButton,
                 language === lang && { backgroundColor: '#FF6F91' },
               ]}
+              onPress={() => handleLanguageChange(lang)}
             >
               <Text style={{ color: language === lang ? '#fff' : '#FF6F91' }}>
                 {lang.toUpperCase()}
@@ -68,11 +69,13 @@ export default function SettingsScreen() {
       <TouchableOpacity
         style={styles.row}
         onPress={() =>
-          Linking.openURL('https://your-flirty-buzz-site.com/privacy-policy')
+          Linking.openURL('https://yourflirtbuzzsite.com/privacy-policy')
         }
       >
         <Ionicons name="document-text-outline" size={22} color="#FF6F91" />
-        <Text style={styles.label}>Privacy Policy</Text>
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>
+          Privacy Policy
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -81,20 +84,18 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff0f5',
+    paddingTop: 40,
     paddingHorizontal: 20,
-    paddingTop: 10,
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 30,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF6F91',
   },
   row: {
     flexDirection: 'row',
@@ -103,15 +104,14 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   label: {
-    fontSize: 18,
     flex: 1,
-    color: '#333',
+    fontSize: 18,
   },
-  langSwitch: {
+  langContainer: {
     flexDirection: 'row',
     gap: 10,
   },
-  langBtn: {
+  langButton: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderWidth: 1,
