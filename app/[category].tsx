@@ -1,15 +1,25 @@
 import React from 'react';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  StatusBar,
+  SafeAreaView,
+} from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { messages } from '../constants/messages';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '../context/ThemeContext';
 
 export default function MessagesScreen() {
   const { category } = useLocalSearchParams();
   const categoryName = category as string;
   const data = messages[categoryName] || [];
-
+  const { isDark } = useTheme();
   const router = useRouter();
 
   const copyToClipboard = (msg: string) => {
@@ -18,13 +28,24 @@ export default function MessagesScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* 👇 Header with Back Button */}
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: isDark ? '#111' : '#fff' },
+      ]}
+    >
+      <StatusBar
+        backgroundColor={isDark ? '#111' : '#fff'}
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+      />
+
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={24} color="#black" />
+          <Ionicons name="arrow-back" size={24} color={isDark ? '#fff' : '#FF6F91'} />
         </TouchableOpacity>
-        <Text style={styles.heading}>{categoryName} Messages 💌</Text>
+        <Text style={[styles.heading, { color: isDark ? '#fff' : '#FF6F91' }]}>
+          {categoryName} Messages 💌
+        </Text>
       </View>
 
       <FlatList
@@ -32,23 +53,25 @@ export default function MessagesScreen() {
         contentContainerStyle={{ paddingBottom: 20 }}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={() => copyToClipboard(item)} style={styles.card}>
-            <Text style={styles.text}>
+          <TouchableOpacity
+            onPress={() => copyToClipboard(item)}
+            style={[
+              styles.card,
+              { backgroundColor: isDark ? '#222' : '#ffe0f0' },
+            ]}
+          >
+            <Text style={[styles.text, { color: isDark ? '#fff' : '#333' }]}>
               {index + 1}. {item}
             </Text>
           </TouchableOpacity>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 40,
-  },
+  container: { flex: 1, paddingHorizontal: 20, paddingTop: 20 },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -58,16 +81,13 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#FF6F91',
   },
   card: {
-    backgroundColor: '#ffe0f0',
     padding: 20,
     borderRadius: 10,
     marginBottom: 15,
   },
   text: {
     fontSize: 18,
-    color: '#333',
   },
 });
