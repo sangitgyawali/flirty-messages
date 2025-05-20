@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -16,12 +16,6 @@ import { useTheme } from '../context/ThemeContext';
 export default function SettingsScreen() {
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();
-  const [language, setLanguage] = useState('en');
-
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang);
-    // Optional: Update i18n.locale here
-  };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: isDark ? '#111' : '#fff0f5' }]}>
@@ -43,40 +37,30 @@ export default function SettingsScreen() {
         <Switch value={isDark} onValueChange={toggleTheme} />
       </View>
 
-      {/* Language Selection */}
-      <View style={styles.row}>
-        <Ionicons name="language" size={22} color="#FF6F91" />
-        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Language</Text>
-        <View style={styles.langContainer}>
-          {['en', 'es', 'hi'].map((lang) => (
-            <TouchableOpacity
-              key={lang}
-              style={[
-                styles.langButton,
-                language === lang && { backgroundColor: '#FF6F91' },
-              ]}
-              onPress={() => handleLanguageChange(lang)}
-            >
-              <Text style={{ color: language === lang ? '#fff' : '#FF6F91' }}>
-                {lang.toUpperCase()}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
-
       {/* Privacy Policy */}
       <TouchableOpacity
         style={styles.row}
-        onPress={() =>
-          Linking.openURL('https://yourflirtbuzzsite.com/privacy-policy')
-        }
+        onPress={() => Linking.openURL('https://yourflirtbuzzsite.com/privacy-policy')}
       >
         <Ionicons name="document-text-outline" size={22} color="#FF6F91" />
-        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>
-          Privacy Policy
-        </Text>
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Privacy Policy</Text>
       </TouchableOpacity>
+
+      {/* Terms & Conditions */}
+      <TouchableOpacity
+        style={styles.row}
+        onPress={() => Linking.openURL('https://yourflirtbuzzsite.com/terms')}
+      >
+        <Ionicons name="shield-checkmark-outline" size={22} color="#FF6F91" />
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Terms & Conditions</Text>
+      </TouchableOpacity>
+
+      {/* App Version */}
+      <View style={styles.row}>
+        <Ionicons name="information-circle-outline" size={22} color="#FF6F91" />
+        <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>App Version</Text>
+        <Text style={[styles.version, { color: isDark ? '#ccc' : '#666' }]}>1.0.0</Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -107,15 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
   },
-  langContainer: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  langButton: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: '#FF6F91',
-    borderRadius: 8,
+  version: {
+    fontSize: 16,
   },
 });
