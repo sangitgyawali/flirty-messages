@@ -40,7 +40,7 @@ export default function SettingsScreen() {
       {/* Privacy Policy */}
       <TouchableOpacity
         style={styles.row}
-        onPress={() => Linking.openURL('https://yourflirtbuzzsite.com/privacy-policy')}
+        onPress={() => Linking.openURL('https://shiftcodetechnologies.com/privacy-policy')}
       >
         <Ionicons name="document-text-outline" size={22} color="#FF6F91" />
         <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Privacy Policy</Text>
