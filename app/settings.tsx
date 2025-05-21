@@ -49,7 +49,7 @@ export default function SettingsScreen() {
       {/* Terms & Conditions */}
       <TouchableOpacity
         style={styles.row}
-        onPress={() => Linking.openURL('https://yourflirtbuzzsite.com/terms')}
+        onPress={() => Linking.openURL('https://shiftcodetechnologies.com/terms')}
       >
         <Ionicons name="shield-checkmark-outline" size={22} color="#FF6F91" />
         <Text style={[styles.label, { color: isDark ? '#fff' : '#000' }]}>Terms & Conditions</Text>
