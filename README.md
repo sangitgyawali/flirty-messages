@@ -1,6 +1,6 @@
 # Flirty Message App 💌 (React Native)
 
-A fun and user-friendly React Native mobile app that offers 1000+ flirty, romantic, and witty messages for every mood. Built using React Native and designed for both Android platforms.
+A fun and user-friendly React Native mobile app that offers 100+s flirty, romantic, and witty messages for every mood. Built using React Native and designed for both Android platforms.
 
 ## ✨ Features
 - Beautiful UI with smooth performance
