@@ -66,7 +66,6 @@ export default function Home() {
         Pick your mood 😏
       </Text>
 
-      {/* 💌 Categories */}
       <FlatList
         data={categories}
         contentContainerStyle={{ paddingVertical: 10 }}
