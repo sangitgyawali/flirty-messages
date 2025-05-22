@@ -75,7 +75,8 @@ export default function Home() {
             onPress={() => router.push(`/${item.title}`)}
             style={({ pressed }) => [
               styles.cardWrapper,
-              pressed && { transform: [{ scale: 0.96 }] },
+              pressed && { 
+                transform: [{ scale: 0.96 }] },
             ]}
           >
             <LinearGradient
